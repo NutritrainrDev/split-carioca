@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"> <!-- taste-skill-ignore: open substitute for the DESIGN.md brand face -->
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"></noscript> <!-- taste-skill-ignore: open substitute for the DESIGN.md brand face -->
-<link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-poster.webp" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,10 +116,7 @@ h1 .ln>span{display:block}
 .g img,.g video{position:absolute;left:0;top:-8%;width:100%;height:116%;object-fit:cover;will-change:transform;transition:filter .3s}
 .g:hover img{filter:brightness(.9)}
 .g1{grid-row:1/3}
-.g1 video,.g1 .kb{top:-6%;height:112%;object-position:45% 50%}
-.kb{animation:breathe 22s ease-in-out infinite alternate}
-@keyframes breathe{from{scale:1}to{scale:1.08}}
-.still .kb{animation-play-state:paused}
+.g1 video{top:-6%;height:112%;object-position:45% 50%}
 .vctl{position:absolute;left:16px;bottom:16px;z-index:2;min-height:40px;padding:0 16px;border:0;border-radius:var(--pill);background:rgba(34,34,34,.72);color:#fff;font:500 var(--s-small)/1 var(--font);cursor:pointer;transition:background-color .2s}
 .vctl:hover{background:var(--ink)}
 .allphotos{position:absolute;right:16px;bottom:16px;z-index:2;min-height:40px;padding:0 16px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font:600 var(--s-small)/40px var(--font);text-decoration:none;transition:background-color .2s}
@@ -227,7 +224,6 @@ h1 .ln>span{display:block}
   html{scroll-behavior:auto}
   .js .rv,.js h1 .ln>span{opacity:1;transform:none;transition:none}
   [data-speed]{transform:none!important}
-  .kb{animation:none}
 }
 </style>
 </head>
@@ -257,7 +253,10 @@ h1 .ln>span{display:block}
 
   <div class="gallery" aria-label="Fotos e vídeo">
     <div class="g g1">
-      <img class="kb" data-speed="-0.06" src="assets/img/hero.webp" width="1600" height="894" alt="Split na parede com a praia de Ipanema e o morro Dois Irmãos ao fundo no fim de tarde" fetchpriority="high" decoding="async">
+      <video id="heroVideo" data-speed="-0.06" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.webp" width="1600" height="900" aria-label="Split na parede com a praia de Ipanema e o morro Dois Irmãos ao fundo no fim de tarde, palmeiras ao vento">
+        <source src="assets/video/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
+        <source src="assets/video/hero-1080.mp4" type="video/mp4">
+      </video>
       <button class="vctl" id="vctl" type="button" aria-pressed="false">Pausar movimento</button>
     </div>
     <div class="g"><img data-speed="-0.04" src="assets/img/instalacao.webp" width="800" height="598" alt="Técnico fixando um split na parede de um apartamento" decoding="async"></div>
@@ -396,7 +395,7 @@ h1 .ln>span{display:block}
     });
   } else { rv.forEach(function(el){ el.classList.add('in'); }); }
 
-  /* motion control: hero video (once it exists) and the slow zoom on the hero still */
+  /* motion control: hero video */
   var v=d.getElementById('heroVideo'), b=d.getElementById('vctl'), paused=reduce.matches;
   function apply(){
     root.classList.toggle('still',paused);

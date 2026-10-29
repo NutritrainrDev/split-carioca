@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://nutritrainrdev.github.io/split-carioca/sitemap.xml
